@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.net.SocketException;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+
+import com.formdev.flatlaf.FlatLightLaf;
 
 public class Display extends JFrame {
 
@@ -36,13 +39,18 @@ public class Display extends JFrame {
 
 	public Display() {
 
+		try {
+		    UIManager.setLookAndFeel( new FlatLightLaf() );
+		} catch( Exception ex ) {
+		    System.err.println( "Failed to initialize LaF" );
+		}
 		initComponents();
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) dimension.getWidth();
 		int y = (int) dimension.getHeight();
 		setBounds(x / 3, y / 4, 500, 400);
 		setResizable(false);
-		setTitle("Carga de líneas CCcam a decodificador");
+		setTitle("Carga de líneas CCcam a decodificador");		
 		setVisible(true);
 	}
 
@@ -219,7 +227,6 @@ public class Display extends JFrame {
 					btnConectar.setBackground(Color.ORANGE);
 				} else {
 					jTextArea1.setText("");
-					btnConectar.setBackground(Color.GREEN);
 					nueva.crearCarpeta();
 					if (!nueva.existeFichero()) {
 						jTextArea1.setText(

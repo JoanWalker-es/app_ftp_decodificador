@@ -20,18 +20,21 @@ import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Conexion_ftp {
-	
-	private String server = "";
-    private int port = 21;
-    private String user = "";
-    private String password = "";
-    private FTPClient ftp;  
-    private String directorioLocal="";
-    private String ficheroCCcam="CCcam.cfg";
-    private boolean conectado=false;  
-    
 
-    public String getServer() {
+	private String server = "";
+	private int port = 21;
+	private String user = "";
+	private String password = "";
+	private FTPClient ftp;
+	private String directorioLocal = "";
+	private String ficheroCCcam = "CCcam.cfg";
+	private boolean conectado = false;
+
+	public String getDirectorioLocal() {
+		return directorioLocal;
+	}
+
+	public String getServer() {
 		return server;
 	}
 
@@ -66,10 +69,11 @@ public class Conexion_ftp {
 	public boolean isConectado() {
 		return conectado;
 	}
-	
+
 	/**
-	 * Método que realiza la conexón al servidor.
-	 * Ingresamos en modo pasivo para no tener problemas con firewall.
+	 * Método que realiza la conexón al servidor. Ingresamos en modo pasivo para no
+	 * tener problemas con firewall.
+	 * 
 	 * @throws SocketException
 	 * @throws IOException
 	 */
@@ -94,17 +98,18 @@ public class Conexion_ftp {
 
 		ftp.setControlEncoding("UTF-8");
 	}
-    
+
 	/**
 	 * Método que descarga el archivo CCcam.cfg del decodificador.
+	 * 
 	 * @return File, el archivo CCcam.cfg
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	
+
 	public File descargaArchivo() throws Exception {
 		File descarga = new File(directorioLocal);
 		ftp.changeWorkingDirectory("/etc");
-		
+
 		OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(descarga));
 		InputStream inputStream = ftp.retrieveFileStream("CCcam.cfg");
 
@@ -123,19 +128,21 @@ public class Conexion_ftp {
 
 		return descarga;
 	}
-	
+
 	/**
 	 * Método que cierra la conexión y hace el deslogueo del usuario.
+	 * 
 	 * @throws IOException
 	 */
-    
-    void close() throws IOException {
-    	ftp.logout();	  
-    	ftp.disconnect();
+
+	void close() throws IOException {
+		ftp.logout();
+		ftp.disconnect();
 	}
 
 	/**
-	 * Método que lee el archivo descargado CCcam.cfg. 
+	 * Método que lee el archivo descargado CCcam.cfg.
+	 * 
 	 * @param archivo, el fichero descargado del decodificador.
 	 * @param jtext,   componente de la parte gráfica que modificamos para que
 	 *                 muestre los datos del fichero.
@@ -164,14 +171,15 @@ public class Conexion_ftp {
 
 	/**
 	 * Método que sube el fichero modificado con los datos que introducimos en el
-	 * textarea con las nuevas líneas CCcam.	 
-	 * @throws Exception 
+	 * textarea con las nuevas líneas CCcam.
+	 * 
+	 * @throws Exception
 	 */
 
 	public void subirFichero() throws Exception {
 		FileInputStream fis = new FileInputStream(directorioLocal);
 
-		ftp.setBufferSize(4096); 
+		ftp.setBufferSize(4096);
 		ftp.setFileType(FTP.BINARY_FILE_TYPE);
 		ftp.changeWorkingDirectory("/etc");
 		boolean uploadFile = ftp.storeFile(ficheroCCcam, fis);
@@ -182,7 +190,7 @@ public class Conexion_ftp {
 
 		fis.close();
 	}
-	
+
 	/**
 	 * Método con el que creamos una carpeta temporal en la carpeta temporal del
 	 * sistema para la descaga del fichero CCcam.cfg del decodificador.

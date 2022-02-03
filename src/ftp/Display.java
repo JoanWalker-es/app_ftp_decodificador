@@ -35,11 +35,12 @@ public class Display extends JFrame {
 	private Conexion_ftp nueva;
 
 	public Display() {
+
 		initComponents();
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) dimension.getWidth();
 		int y = (int) dimension.getHeight();
-		setBounds(x / 3, y / 4, 500, 450);
+		setBounds(x / 3, y / 4, 500, 400);
 		setResizable(false);
 		setTitle("Carga de líneas CCcam a decodificador");
 		setVisible(true);
@@ -63,12 +64,14 @@ public class Display extends JFrame {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		jTextArea1.setLineWrap(true);
 		jTextArea1.setColumns(20);
 		jTextArea1.setRows(5);
 		jScrollPane1.setViewportView(jTextArea1);
 
 		btnConectar.setText("Conectar FTP");
+		btnConectar.setMaximumSize(new java.awt.Dimension(153, 20));
+		btnConectar.setMinimumSize(new java.awt.Dimension(153, 20));
+		btnConectar.setPreferredSize(new java.awt.Dimension(153, 20));
 		btnConectar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnConectarActionPerformed(evt);
@@ -76,18 +79,44 @@ public class Display extends JFrame {
 		});
 
 		btnCargar.setText("Cargar CCcam");
+		btnCargar.setMaximumSize(new java.awt.Dimension(153, 20));
+		btnCargar.setMinimumSize(new java.awt.Dimension(153, 20));
+		btnCargar.setPreferredSize(new java.awt.Dimension(153, 20));
 		btnCargar.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnCargarActionPerformed(evt);
 			}
 		});
 
-		labelIP.setText("IP");
-		labelPORT.setText("Puerto");
-		labelUSER.setText("Usuario");
-		labelPASSWORD.setText("Contraseña");
-		btnSalir.setText("SALIR");
+		campoIP.setMaximumSize(new java.awt.Dimension(100, 20));
+		campoIP.setMinimumSize(new java.awt.Dimension(100, 20));
+		campoIP.setPreferredSize(new java.awt.Dimension(100, 20));
 
+		campoPASSWORD.setMaximumSize(new java.awt.Dimension(100, 20));
+		campoPASSWORD.setMinimumSize(new java.awt.Dimension(100, 20));
+		campoPASSWORD.setPreferredSize(new java.awt.Dimension(100, 20));
+
+		campoPORT.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+		campoPORT.setMaximumSize(new java.awt.Dimension(100, 20));
+		campoPORT.setMinimumSize(new java.awt.Dimension(100, 20));
+		campoPORT.setPreferredSize(new java.awt.Dimension(100, 20));
+
+		campoUSER.setMaximumSize(new java.awt.Dimension(100, 20));
+		campoUSER.setMinimumSize(new java.awt.Dimension(100, 20));
+		campoUSER.setPreferredSize(new java.awt.Dimension(100, 20));
+
+		labelIP.setText("IP");
+
+		labelPORT.setText("Puerto");
+
+		labelUSER.setText("Usuario");
+
+		labelPASSWORD.setText("Contraseña");
+
+		btnSalir.setText("SALIR");
+		btnSalir.setMaximumSize(new java.awt.Dimension(153, 20));
+		btnSalir.setMinimumSize(new java.awt.Dimension(153, 20));
+		btnSalir.setPreferredSize(new java.awt.Dimension(153, 20));
 		btnSalir.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnSalirActionPerformed(evt);
@@ -100,55 +129,72 @@ public class Display extends JFrame {
 				.createSequentialGroup().addContainerGap()
 				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 						.addGroup(layout.createSequentialGroup().addComponent(jScrollPane1).addContainerGap())
-						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-								.addGap(17, 17, 17)
+						.addGroup(layout.createSequentialGroup().addGap(20, 20, 20)
 								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addComponent(labelIP).addComponent(labelPORT))
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-										.addComponent(campoIP, javax.swing.GroupLayout.PREFERRED_SIZE, 118,
-												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addComponent(btnConectar).addComponent(campoPORT,
-												javax.swing.GroupLayout.PREFERRED_SIZE, 61,
+										.addComponent(labelPASSWORD).addComponent(labelPORT).addComponent(labelUSER)
+										.addComponent(labelIP))
+								.addGap(18, 18, 18)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+										.addComponent(campoPASSWORD, javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(campoPORT, javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(campoUSER, javax.swing.GroupLayout.Alignment.TRAILING,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(campoIP, javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGap(60, 60, 60)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+										.addComponent(btnCargar, javax.swing.GroupLayout.DEFAULT_SIZE, 180,
+												Short.MAX_VALUE)
+										.addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(btnConectar, javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addContainerGap(41, Short.MAX_VALUE)))));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup().addGap(23, 23, 23).addComponent(jScrollPane1,
+						javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+				.addGap(18, 18, 18)
+				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
+						.createSequentialGroup()
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addGroup(layout
+								.createSequentialGroup()
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(labelIP).addComponent(campoIP,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
 												javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55,
-										Short.MAX_VALUE)
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-										.addGroup(layout.createSequentialGroup().addComponent(labelPASSWORD)
-												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-												.addComponent(campoPASSWORD, javax.swing.GroupLayout.PREFERRED_SIZE, 83,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-										.addGroup(layout.createSequentialGroup().addComponent(labelUSER)
-												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-												.addComponent(campoUSER, javax.swing.GroupLayout.PREFERRED_SIZE, 83,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-										.addComponent(btnCargar, javax.swing.GroupLayout.Alignment.LEADING))
-								.addGap(66, 66, 66))))
-				.addGroup(layout.createSequentialGroup().addGap(178, 178, 178).addComponent(btnSalir).addGap(0, 0,
-						Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(23, 23, 23)
-						.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(labelPORT).addComponent(campoPORT,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addGap(25, 25, 25))
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(campoUSER, javax.swing.GroupLayout.PREFERRED_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(labelUSER)))
 						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(campoIP, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(campoUSER, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(labelIP).addComponent(labelUSER))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(campoPORT, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
 								.addComponent(campoPASSWORD, javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(labelPORT).addComponent(labelPASSWORD))
-						.addGap(35, 35, 35)
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(btnConectar).addComponent(btnCargar))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-						.addComponent(btnSalir).addGap(29, 29, 29)));
+								.addComponent(labelPASSWORD))
+						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(btnConectar, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(btnCargar, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(32, 32, 32)
+								.addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(46, Short.MAX_VALUE)))));
 
 		pack();
 	}
@@ -175,21 +221,20 @@ public class Display extends JFrame {
 					jTextArea1.setText("");
 					btnConectar.setBackground(Color.GREEN);
 					nueva.crearCarpeta();
-					if(!nueva.existeFichero()) {
-						jTextArea1.setText("NO EXISTE EL ARCHIVO CCCAM.CFG");
-						
-					}
-					else {
-					try {
-						jTextArea1 = nueva.leerArchivo(nueva.descargaArchivo(), jTextArea1);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						jTextArea1.setText("ERROR AL DESCARGAR EL ARCHIVO \n" + e.getMessage());
-						e.printStackTrace();
-					}
+					if (!nueva.existeFichero()) {
+						jTextArea1.setText(
+								"NO EXISTE EL ARCHIVO CCCAM.CFG \nINTRODUZCA LAS LINEAS Y PULSE EL BOTON CARGAR PARA CREARLO");
+					} else {
+						try {
+							jTextArea1 = nueva.leerArchivo(nueva.descargaArchivo(), jTextArea1);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							jTextArea1.setText("ERROR AL DESCARGAR EL ARCHIVO \n" + e.getMessage());
+							e.printStackTrace();
+						}
 
-					btnConectar.setText("Conectado");
-					btnConectar.setEnabled(false);
+						btnConectar.setText("Conectado");
+						btnConectar.setEnabled(false);
 					}
 				}
 			} catch (SocketException e1) {
@@ -206,7 +251,7 @@ public class Display extends JFrame {
 	}
 
 	private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {
-		File archivo = new File("./ftp/CCcam.cfg");
+		File archivo = new File(nueva.getDirectorioLocal());
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(archivo, false)); // true for append
 			jTextArea1.write(writer);

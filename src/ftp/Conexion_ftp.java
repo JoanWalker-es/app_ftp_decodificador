@@ -16,6 +16,7 @@ import javax.swing.JTextArea;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
 
 public class Conexion_ftp {
@@ -193,6 +194,28 @@ public class Conexion_ftp {
 		carpeta.mkdir();
 		directorioLocal = carpeta.getPath() + File.separator + "CCcam.cfg";
 	}
-	
+
+	/**
+	 * Método que comprueba que el archivo CCCam.cfg existe en el directorio del
+	 * decodificador.
+	 * 
+	 * @return existe, nos devuelve true si existe y false si no.
+	 * @throws IOException
+	 */
+
+	public boolean existeFichero() throws IOException {
+		ftp.changeWorkingDirectory("/etc");
+		FTPFile[] archivos;
+		boolean existe = false;
+
+		archivos = ftp.listFiles();
+		for (FTPFile archivo : archivos) {
+			if (ficheroCCcam.equals(archivo.getName())) {
+				existe = true;
+			}
+		}
+
+		return existe;
+	}
 
 }

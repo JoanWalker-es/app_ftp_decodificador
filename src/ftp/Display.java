@@ -175,6 +175,11 @@ public class Display extends JFrame {
 					jTextArea1.setText("");
 					btnConectar.setBackground(Color.GREEN);
 					nueva.crearCarpeta();
+					if(!nueva.existeFichero()) {
+						jTextArea1.setText("NO EXISTE EL ARCHIVO CCCAM.CFG");
+						
+					}
+					else {
 					try {
 						jTextArea1 = nueva.leerArchivo(nueva.descargaArchivo(), jTextArea1);
 					} catch (Exception e) {
@@ -185,6 +190,7 @@ public class Display extends JFrame {
 
 					btnConectar.setText("Conectado");
 					btnConectar.setEnabled(false);
+					}
 				}
 			} catch (SocketException e1) {
 				// TODO Auto-generated catch block
